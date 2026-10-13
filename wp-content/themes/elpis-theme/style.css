@@ -1,0 +1,320 @@
+/*
+Theme Name: ELPIS BD
+Theme URI: http://example.com/elpis-bd
+Author: Antigravity
+Author URI: http://example.com
+Description: Enterprise level IT website theme for ELPIS BD.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: elpis-bd
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #0f172a;
+  --secondary-color: #b8860b;
+  --accent-color: #10b981;
+  --bg-color: #f8fafc;
+  --text-color: #334155;
+  --light-text: #94a3b8;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Outfit', sans-serif;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header */
+.site-header {
+  background: #0f172a;
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  padding: 1rem 0;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.main-navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.main-navigation a {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.main-navigation a:hover {
+  color: var(--secondary-color);
+}
+
+/* Hamburger Menu & Mobile Navigation */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.close-menu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Media Queries for Mobile/Tablet Menu */
+@media screen and (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    width: 300px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    padding: 80px 2rem 2rem;
+    display: block;
+  }
+
+  .main-navigation.active {
+    transform: translateX(0);
+  }
+
+  .main-navigation ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    display: flex;
+  }
+
+  .main-navigation a {
+    font-size: 1.25rem;
+  }
+
+  .close-menu {
+    display: block;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color), #1e293b);
+  color: var(--white);
+  padding: 100px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-section h1 {
+  color: var(--white);
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+  color: var(--light-text);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.hero-image {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-top: 3rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Services */
+.services-section {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--primary-color);
+  color: var(--light-text);
+  padding: 4rem 0 2rem;
+  text-align: center;
+}
+
+/* Mobile Adjustments for Typography and Layout */
+@media screen and (max-width: 1024px) {
+  .service-detail {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .service-detail>div {
+    width: 100%;
+  }
+
+  ul {
+    text-align: left;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero-section,
+  .services-section {
+    padding: 60px 0;
+  }
+}
