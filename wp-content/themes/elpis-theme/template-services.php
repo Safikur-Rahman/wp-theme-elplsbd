@@ -336,8 +336,8 @@ $s5_img    = get_theme_mod('services_page_service_5_img', 'https://42f2671d685f5
     }
     .sp-feature-list li:hover::before {
         transform: scale(1.3);
-        background: #10b981;
-        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+        background: var(--secondary-color, #b8860b);
+        box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.35);
     }
 
     /* Smart Contrast Engine for Dynamic Light/Dark Customizer Colors */
@@ -429,7 +429,7 @@ $s5_img    = get_theme_mod('services_page_service_5_img', 'https://42f2671d685f5
             order: 1;
             width: 100%;
             margin-bottom: 0.5rem;
-            text-align: left;
+            text-align: center;
         }
         .sp-visual-col {
             order: 2;

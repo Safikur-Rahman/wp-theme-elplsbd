@@ -383,7 +383,7 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
     .service-row:hover .fp-info-col h3::after,
     .offer-row:hover .fp-info-col h3::after {
         width: 85px;
-        background: linear-gradient(90deg, #b8860b, #10b981);
+        background: linear-gradient(90deg, #b8860b, #d4af37);
     }
     .service-row:hover .fp-info-col h3,
     .offer-row:hover .fp-info-col h3 {
@@ -395,6 +395,7 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
         padding: 1.5rem 1.85rem;
         border-radius: 16px;
         border-left: 3.5px solid #b8860b;
+        border-top: 3px solid transparent;
         transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         position: relative;
     }
@@ -406,8 +407,10 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
         font-weight: 400;
     }
     .service-row:hover .fp-desc-pod,
-    .offer-row:hover .fp-desc-pod {
-        border-left-color: #10b981;
+    .offer-row:hover .fp-desc-pod,
+    .fp-desc-pod:hover {
+        border-left-color: var(--secondary-color, #b8860b);
+        border-top-color: var(--secondary-color, #b8860b);
         transform: translateX(4px);
     }
 
@@ -423,7 +426,7 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
     }
     .is-dark .fp-desc-pod {
         background: rgba(255, 255, 255, 0.03);
-        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        border-top: 3px solid rgba(255, 255, 255, 0.07);
         border-right: 1px solid rgba(255, 255, 255, 0.07);
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         border-left: 3.5px solid #b8860b;
@@ -433,9 +436,12 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
         color: #cbd5e1 !important;
     }
     .is-dark .service-row:hover .fp-desc-pod,
-    .is-dark .offer-row:hover .fp-desc-pod {
+    .is-dark .offer-row:hover .fp-desc-pod,
+    .is-dark .fp-desc-pod:hover {
         background: rgba(255, 255, 255, 0.05);
-        border-left-color: #10b981;
+        border-left-color: var(--secondary-color, #b8860b);
+        border-top-color: var(--secondary-color, #b8860b);
+        box-shadow: 0 10px 30px -10px rgba(184, 134, 11, 0.2);
     }
     .is-dark .fp-image-card {
         background: rgba(255, 255, 255, 0.03);
@@ -461,7 +467,7 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
     }
     .is-light .fp-desc-pod {
         background: rgba(15, 23, 42, 0.02);
-        border-top: 1px solid rgba(15, 23, 42, 0.05);
+        border-top: 3px solid rgba(15, 23, 42, 0.05);
         border-right: 1px solid rgba(15, 23, 42, 0.05);
         border-bottom: 1px solid rgba(15, 23, 42, 0.05);
         border-left: 3.5px solid #b8860b;
@@ -470,10 +476,12 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
         color: var(--text-color, #334155) !important;
     }
     .is-light .service-row:hover .fp-desc-pod,
-    .is-light .offer-row:hover .fp-desc-pod {
+    .is-light .offer-row:hover .fp-desc-pod,
+    .is-light .fp-desc-pod:hover {
         background: rgba(15, 23, 42, 0.035);
-        border-left-color: #10b981;
-        box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.05);
+        border-left-color: var(--secondary-color, #b8860b);
+        border-top-color: var(--secondary-color, #b8860b);
+        box-shadow: 0 10px 25px -10px rgba(184, 134, 11, 0.15);
     }
     .is-light .fp-image-card {
         background: transparent;
@@ -511,34 +519,80 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
             padding: 75px 0 !important;
         }
         .hero-content-wrap {
+            display: flex;
             flex-direction: column;
             text-align: center;
-            gap: 3rem;
+            gap: 2rem;
         }
         .hero-text-col {
+            display: contents;
+        }
+        .hero-title {
+            order: 1;
+            width: 100%;
             text-align: center;
+            font-size: 2.7rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-image-col {
+            order: 2;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0.5rem 0 1.5rem;
         }
         .hero-desc-pod {
+            order: 3;
+            width: 100%;
             border-left: none;
             padding-left: 0;
             border-top: 2px solid #b8860b;
-            padding-top: 1rem;
-            margin: 1.5rem auto 0;
+            padding-top: 1.25rem;
+            margin: 0 auto;
             max-width: 650px;
-        }
-        .hero-title {
-            font-size: 2.7rem;
+            text-align: center;
         }
         .hero-desc {
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
+            text-align: center;
         }
         .service-detail {
-            gap: 2.5rem;
+            display: flex;
+            flex-direction: column !important;
+            gap: 1.75rem;
+            align-items: stretch;
         }
-        .service-detail[style*="row-reverse"] {
-            flex-direction: row !important;
+        .service-detail[style*="row-reverse"],
+        .service-detail.row-reverse {
+            flex-direction: column !important;
+        }
+        .fp-info-col {
+            display: contents;
+        }
+        .fp-info-col h3 {
+            order: 1;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .fp-info-col h3::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .fp-visual-col {
+            order: 2;
+            width: 100%;
+            min-width: auto;
+            margin: 0.5rem 0 1.25rem;
+            display: flex;
+            justify-content: center;
+        }
+        .fp-desc-pod {
+            order: 3;
+            width: 100%;
         }
         .service-row.layout-boxed .service-row-inner,
         .offer-row.layout-boxed .offer-row-inner {
@@ -562,7 +616,10 @@ $hero_is_dark           = elpis_is_dark_color($hero_bg_color);
             border-radius: 18px;
         }
         .service-detail {
-            gap: 2rem !important;
+            gap: 1.5rem !important;
+        }
+        .fp-visual-col {
+            margin: 0.25rem 0 1rem;
         }
         .service-detail img {
             max-width: 100%;

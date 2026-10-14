@@ -40,19 +40,19 @@ get_header(); ?>
                 <h3 style="text-align: center; color: var(--white); font-size: 2rem; margin-bottom: 2rem;">Benefits of Working with ELPIS</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
                     <div>
-                        <h4 style="color: var(--accent-color); margin-bottom: 0.5rem; font-size: 1.1rem;">Start Right Away:</h4>
+                        <h4 style="color: var(--secondary-color, #b8860b); margin-bottom: 0.5rem; font-size: 1.1rem;">Start Right Away:</h4>
                         <p style="color: #cbd5e1; font-size: 0.95rem;">ELPIS quickly scales up teams and manage them independently to deliver on agreed plans.</p>
                     </div>
                     <div>
-                        <h4 style="color: var(--accent-color); margin-bottom: 0.5rem; font-size: 1.1rem;">Qualified Developers:</h4>
+                        <h4 style="color: var(--secondary-color, #b8860b); margin-bottom: 0.5rem; font-size: 1.1rem;">Qualified Developers:</h4>
                         <p style="color: #cbd5e1; font-size: 0.95rem;">Our ongoing hiring process ensures you always have access to the best IT talent.</p>
                     </div>
                     <div>
-                        <h4 style="color: var(--accent-color); margin-bottom: 0.5rem; font-size: 1.1rem;">Comprehensive Management:</h4>
+                        <h4 style="color: var(--secondary-color, #b8860b); margin-bottom: 0.5rem; font-size: 1.1rem;">Comprehensive Management:</h4>
                         <p style="color: #cbd5e1; font-size: 0.95rem;">From start to finish, we handle your project and team management, ensuring a high-quality outcome.</p>
                     </div>
                     <div>
-                        <h4 style="color: var(--accent-color); margin-bottom: 0.5rem; font-size: 1.1rem;">Operational Supremacy:</h4>
+                        <h4 style="color: var(--secondary-color, #b8860b); margin-bottom: 0.5rem; font-size: 1.1rem;">Operational Supremacy:</h4>
                         <p style="color: #cbd5e1; font-size: 0.95rem;">Our cost-effective services help you stay competitive by cutting costs without sacrificing quality.</p>
                     </div>
                 </div>
