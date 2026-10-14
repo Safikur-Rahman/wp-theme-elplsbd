@@ -119,7 +119,7 @@ Navigate to **WordPress Admin > Appearance > Customize** to configure all option
 - **Hero Image:** URL or media upload for the hero graphic.
 - **Hero Background Color:** Custom background color picker (Default: `#0f172a`). Automatically adjusts headline & text contrast based on color brightness.
 
-### 4. Services & Offers Backgrounds
+### 4. Services & Offers Backgrounds (Homepage)
 - **Our Services Header Layout:** Select `Boxed` or `Full Width`.
 - **Our Services Header Background Color:** Background color for the title area.
 - **Our Services Items Layout:** Select `Boxed Cards` or `Full Width Rows`.
@@ -129,20 +129,48 @@ Navigate to **WordPress Admin > Appearance > Customize** to configure all option
 - **What We Offer Items Layout:** Select `Boxed Cards` or `Full Width Rows`.
 - **Offer 1 to 4 Background Colors:** Dedicated color picker for each of the 4 offer cards.
 
-### 5. Service & Offer Images
-- Allows setting custom SVG or image URLs for each of the 5 Services and 4 Offers individually.
+### 5. Services Page Settings (`template-services.php`)
+- **Services Page Header Layout:** Choose `Boxed` or `Full Width` for the page title header.
+- **Services Page Header Background Color:** Dedicated color picker for the Services page header.
+- **Default Items Layout:** Choose `Boxed Cards` or `Full Width Rows` as page-wide default for services.
+- **Service 1 to 5 Layout / Width:** Set individual width layout for each service (`Follow Page Default`, `Boxed Card`, or `Full Width`).
+- **Service 1 to 5 Background Colors:** Individual color picker for each of the 5 detailed service cards.
+- **Service 1 to 5 Dedicated Images:** Upload or select unique image/SVG artwork specifically for the Services page, completely separated from the Homepage.
+
+### 6. Homepage Service & Offer Images
+- Allows setting custom SVG or image URLs for each of the 5 Services and 4 Offers specifically on the Homepage.
 
 ### 6. Leaders Section
 - **Leader 1 & 2 Name, Title, Subtitle, Quote, and Photo:** Display executive leadership with styled quotes and portraits.
 
-### 7. Careers Section
-- **Careers Image:** Banner image for job recruitment.
-- **CV Drop Email:** Official email for resume submissions (Default: `careers@elpis.bd`).
+### 7. Careers Section & CV Submissions Hub
+- **Careers Visual & Email:** Banner image and official CV submission inbox (`careers@elpis.bd`).
+- **Interactive CV Dropzone & Modal:**
+  - Applicants can drag and drop or upload their CV / resume file (`.pdf`, `.doc`, `.docx` up to 10 MB) directly on the website.
+  - Form collects Full Name, Email, Phone, Position / Role of Interest, and Cover Note.
+  - Instant AJAX upload with animated success checkmark and notification email dispatched to HR.
+- **WP Admin Candidate Management (`CV Submissions`):**
+  - Dedicated menu on the WordPress admin sidebar with live unread counter badge.
+  - Candidate table with filters (`All`, `Unread`, `Reviewed`, `Replied`) and search.
+  - Detailed candidate profile view with cover note and file info.
+  - **One-Click Download / View:** Direct download button for candidate's uploaded CV file.
+  - **Direct SMTP Reply to Candidate:** Send interview invites or response emails directly to the applicant via SMTP.
 
-### 8. Contact Section
-- Official Phone, Email, and Physical Address fields.
+### 8. Contact Section & Inquiries Management
+- **Official Contact Information:** Phone, Email, and Physical Address fields configured in Customizer.
+- **Dedicated Database Storage:** All submissions from the Contact Us form (Name, Company, Phone, Email, Message) are automatically saved into a dedicated database table (`wp_elpis_contact_messages`).
+- **WP Admin Inquiries Hub (`Contact Messages`):**
+  - Live unread notification counter badge on the WordPress admin sidebar.
+  - Comprehensive list of inquiries with filters (`All`, `Unread`, `Replied`) and search capabilities.
+  - Detailed view screen showing client information, company, phone, and full message.
+  - **Direct SMTP Reply Panel:** Reply directly to clients via email from the WordPress admin dashboard with tracking of previous replies.
 
-### 9. Footer Settings
+### 9. Built-in SMTP Server Configuration (`Contact Messages > SMTP Settings`)
+- Native SMTP engine integrating with WordPress `wp_mail()` without requiring third-party plugins.
+- Configurable SMTP Host, Port, Encryption (TLS / SSL / None), Authentication, Username, Password, From Email, and From Name.
+- Real-time **Test Email** utility to verify SMTP server connectivity and deliverability directly from the admin panel.
+
+### 10. Footer Settings
 - **Company Description (Column 1):** Short introductory overview of the company.
 - **Column 2 & 3 Headings:** Custom titles for links and contact columns.
 - **Head Office Address, Email, Phone, Hours:** Plain text editable fields.

@@ -171,24 +171,133 @@ function elpis_bd_customize_register($wp_customize) {
         )));
     }
 
-    // 2. Images Section (For all service and offer SVGs)
-    $wp_customize->add_section('images_section', array('title' => 'Service & Offer Images', 'priority' => 32));
+    // 1.2 Services Page (template-services.php) Settings Section
+    $wp_customize->add_section('services_page_section', array(
+        'title' => 'Services Page Settings',
+        'priority' => 31.5,
+        'description' => 'Customize background colors, width/layout (Full Width vs Boxed), and dedicated images for the Services page.'
+    ));
+
+    // Page Header Layout & Background
+    $wp_customize->add_setting('services_page_header_layout', array(
+        'default' => 'boxed',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('services_page_header_layout', array(
+        'label' => 'Services Page: Header Layout',
+        'section' => 'services_page_section',
+        'type' => 'select',
+        'choices' => array(
+            'boxed' => 'Boxed / Contained (as in photo)',
+            'fullwidth' => 'Full Width (Edge-to-Edge)',
+        ),
+        'description' => 'Choose between Full Width or Boxed layout for the page title header.'
+    ));
+
+    $wp_customize->add_setting('services_page_header_bg', array(
+        'default' => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'services_page_header_bg', array(
+        'label' => 'Services Page: Header Background Color',
+        'section' => 'services_page_section',
+    )));
+
+    // Global Services Items Layout
+    $wp_customize->add_setting('services_page_items_layout', array(
+        'default' => 'boxed',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('services_page_items_layout', array(
+        'label' => 'Services Page: Default Items Layout',
+        'section' => 'services_page_section',
+        'type' => 'select',
+        'choices' => array(
+            'boxed' => 'Boxed Cards (Default)',
+            'fullwidth' => 'Full Width Rows (Edge-to-Edge)',
+        ),
+        'description' => 'Default layout for service items on the Services page.'
+    ));
+
+    // Individual Service 1 to 5 Settings
+    $services_page_names = array(
+        1 => 'Personalized Software Development',
+        2 => 'Web Application Development',
+        3 => 'Mobile Application Development',
+        4 => 'Digital Marketing',
+        5 => 'Quality Assurance & Testing',
+    );
+    $services_page_defaults = array(
+        1 => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/programming_2svr.svg',
+        2 => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/web_devices_xw3m.svg',
+        3 => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mobile_development_8ygq.svg',
+        4 => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/social_media_marketing_twnp.svg',
+        5 => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/quality_assurance_7fny.svg',
+    );
+
+    for ($s = 1; $s <= 5; $s++) {
+        $default_s_bg = ($s % 2 === 0) ? '#f8fafc' : '#ffffff';
+        $s_name = $services_page_names[$s];
+
+        // Service Layout (Width)
+        $wp_customize->add_setting("services_page_service_{$s}_layout", array(
+            'default' => 'global',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+        $wp_customize->add_control("services_page_service_{$s}_layout", array(
+            'label' => "Service {$s} Layout / Width ({$s_name})",
+            'section' => 'services_page_section',
+            'type' => 'select',
+            'choices' => array(
+                'global' => 'Follow Page Default',
+                'boxed' => 'Boxed Card',
+                'fullwidth' => 'Full Width (Edge-to-Edge)',
+            ),
+        ));
+
+        // Service Background Color
+        $wp_customize->add_setting("services_page_service_{$s}_bg", array(
+            'default' => $default_s_bg,
+            'sanitize_callback' => 'sanitize_hex_color',
+        ));
+        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, "services_page_service_{$s}_bg", array(
+            'label' => "Service {$s} Background Color ({$s_name})",
+            'section' => 'services_page_section',
+        )));
+
+        // Dedicated Service Image for Services Page
+        $wp_customize->add_setting("services_page_service_{$s}_img", array(
+            'default' => $services_page_defaults[$s],
+        ));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "services_page_service_{$s}_img", array(
+            'label' => "Service {$s} Image ({$s_name})",
+            'section' => 'services_page_section',
+            'description' => "Upload or change image specifically for Service {$s} on the Services Page."
+        )));
+    }
+
+    // 2. Images Section (For Homepage service and offer SVGs)
+    $wp_customize->add_section('images_section', array(
+        'title' => 'Homepage Service & Offer Images',
+        'priority' => 32,
+        'description' => 'Upload or change images for the Homepage Our Services and What We Offer sections.'
+    ));
     
     $default_imgs = [
-        'service_1_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/programming_2svr.svg',
-        'service_2_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/web_devices_xw3m.svg',
-        'service_3_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mobile_development_8ygq.svg',
-        'service_4_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/social_media_marketing_twnp.svg',
-        'service_5_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/quality_assurance_7fny.svg',
-        'offer_1_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/code_typing_7jnv.svg',
-        'offer_2_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/team_collaboration_re_ow29.svg',
-        'offer_3_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/work_together_re_5y58.svg',
-        'offer_4_img' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/project_completed_re_jr7u.svg'
+        'service_1_img' => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/programming_2svr.svg', 'label' => 'Homepage: Service 1 Image'),
+        'service_2_img' => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/web_devices_xw3m.svg', 'label' => 'Homepage: Service 2 Image'),
+        'service_3_img' => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/mobile_development_8ygq.svg', 'label' => 'Homepage: Service 3 Image'),
+        'service_4_img' => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/social_media_marketing_twnp.svg', 'label' => 'Homepage: Service 4 Image'),
+        'service_5_img' => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/quality_assurance_7fny.svg', 'label' => 'Homepage: Service 5 Image'),
+        'offer_1_img'   => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/code_typing_7jnv.svg', 'label' => 'Homepage: Offer 1 Image'),
+        'offer_2_img'   => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/team_collaboration_re_ow29.svg', 'label' => 'Homepage: Offer 2 Image'),
+        'offer_3_img'   => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/work_together_re_5y58.svg', 'label' => 'Homepage: Offer 3 Image'),
+        'offer_4_img'   => array('url' => 'https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/project_completed_re_jr7u.svg', 'label' => 'Homepage: Offer 4 Image')
     ];
 
-    foreach($default_imgs as $id => $url) {
-        $wp_customize->add_setting($id, array('default' => $url));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, $id, array('label' => str_replace('_', ' ', strtoupper($id)), 'section' => 'images_section')));
+    foreach($default_imgs as $id => $info) {
+        $wp_customize->add_setting($id, array('default' => $info['url']));
+        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, $id, array('label' => $info['label'], 'section' => 'images_section')));
     }
 
     // 3. Careers Section

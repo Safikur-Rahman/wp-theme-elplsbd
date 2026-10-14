@@ -148,7 +148,7 @@ $logo_height = get_theme_mod('header_logo_height', '46');
 
         <div class="footer-bottom">
             <div class="footer-bottom-content">
-                <p>&copy; <?php echo date('Y'); ?> <strong><?php echo esc_html($footer_copyright_title); ?></strong>. <?php echo esc_html($footer_copyright_text); ?></p>
+                <p>&copy; <?php echo date('Y'); ?> <strong class="footer-brand-highlight"><?php echo esc_html($footer_copyright_title); ?></strong>. <?php echo esc_html($footer_copyright_text); ?></p>
             </div>
         </div>
     </div>
@@ -366,8 +366,11 @@ $logo_height = get_theme_mod('header_logo_height', '46');
     color: #64748b;
 }
 
-.footer-bottom-content strong {
-    color: #e2e8f0;
+.footer-bottom-content strong,
+.footer-brand-highlight {
+    color: var(--brand-color, #b8860b) !important;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 /* Responsive */

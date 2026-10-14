@@ -20,6 +20,8 @@ function elpis_bd_scripts() {
 add_action('wp_enqueue_scripts', 'elpis_bd_scripts');
 
 require_once get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/contact-system.php';
+require_once get_template_directory() . '/inc/careers-system.php';
 
 if (!function_exists('elpis_is_dark_color')) {
     function elpis_is_dark_color($hex) {
